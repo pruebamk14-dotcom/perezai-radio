@@ -1,23 +1,43 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RadioPatrulla by Perez</title>
-<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#070a10;color:#e6ecf5;font-family:Segoe UI,system-ui,Arial;text-align:center;padding:20px}
-a{color:#f2b33d} .c{max-width:520px} .s{color:#9fb0c8;font-size:14px}</style></head><body><div class="c">
-<h1>Radio<span style="color:#f2b33d">Patrulla</span></h1>
-<p id="m">Buscando el servidor de Perezâ€¦</p>
-<p class="s">La central con IA para LSPDFR que te oye, te contesta con voz y te despacha de verdad.</p>
+<title>PerezAI Â· by Perez</title>
+<style>
+:root{--f:#070a10;--p:#0f141d;--b:#223047;--t:#e6ecf5;--t2:#9fb0c8;--t3:#6e7f99;--a:#f2b33d;--v:#35d17a;--r:#ff4d5e}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(900px 500px at 50% -10%,#16223a 0%,var(--f) 60%);color:var(--t);font-family:Segoe UI,system-ui,Arial;padding:40px 16px;display:flex;justify-content:center}
+.c{max-width:640px;width:100%;text-align:center}
+h1{font-size:44px;margin:10px 0 4px;letter-spacing:-.5px}h1 span{color:var(--a)}
+.s{color:var(--t2);font-size:17px;margin:0 0 22px}
+.est{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--b);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--t2);margin-bottom:22px}
+.est i{width:9px;height:9px;border-radius:50%;background:var(--t3)}.est.on i{background:var(--v);box-shadow:0 0 10px var(--v)}.est.off i{background:var(--r)}
+.g{display:grid;gap:12px}
+a.card{display:block;text-decoration:none;color:var(--t);background:var(--p);border:1px solid var(--b);border-radius:14px;padding:18px 20px;text-align:left;transition:.15s}
+a.card:hover{border-color:var(--a);transform:translateY(-1px)}a.card.dis{opacity:.45;pointer-events:none}
+a.card b{display:block;font-size:17px;margin-bottom:3px}a.card small{color:var(--t2);font-size:13.5px}a.card .ic{float:right;font-size:26px;margin-left:12px}
+.n{color:var(--t3);font-size:12.5px;margin-top:22px;line-height:1.6}
+code{background:#0b0f16;border:1px solid var(--b);border-radius:6px;padding:1px 6px;color:#ffd27a;font-family:Consolas,monospace;font-size:12.5px}
+</style></head><body><div class="c">
+<h1>Perez<span>AI</span></h1>
+<p class="s">La central de radio con IA, los NPCs que hablan, y tu cuenta. Todo en un sitio.</p>
+<div class="est" id="est"><i></i><span id="estt">Buscando el servidor de Perezâ€¦</span></div>
+<div class="g">
+  <a class="card dis" id="l-radio" href="#"><span class="ic">ðŸ“»</span><b>RadioPatrulla Â· Despacho PRO</b><small>QuÃ© hace, cÃ³mo se instala, la licencia y la descarga del zip.</small></a>
+  <a class="card dis" id="l-cli" href="#"><span class="ic">ðŸ§ </span><b>PerezAI Â· Cliente</b><small>Entra con tu llave: tus horas, tus plugins, descargas, chat con Perez y tu hoja.</small></a>
+  <a class="card dis" id="l-inst" href="#"><span class="ic">â¬‡</span><b>Instalador del cliente PerezAI</b><small>Pone el acceso directo y el programa de avisos en tu PC. Solo pide tu llave.</small></a>
+</div>
+<p class="n">Tu <b>llave</b> es tu login: una por persona, amarrada a tu PC. Te la da Perez.<br>Si aquÃ­ dice "apagado", Perez no tiene el servidor encendido ahora; vuelve en un rato.</p>
 <script>
-// La direccion del servidor cambia cada vez que Perez lo arranca (tunel gratis). Se lee de servidor.txt
-// por la API de GitHub (sin cache) y, si falla, del raw.
 const API='https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt';
-const RAW='servidor.txt';
-const APAGADO='El servidor de Perez esta apagado ahora mismo. Vuelve a probar en un rato (o escribele por Discord).';
-function ir(u){u=(u||'').trim(); const m=document.getElementById('m');
-  if(!u||u.indexOf('127.0.0.1')>=0){m.textContent=APAGADO;return;}
-  // Â¿esta vivo de verdad? (si el servidor murio de golpe, el nombre del tunel ya no existe)
-  const ctl=new AbortController(); const t=setTimeout(()=>ctl.abort(),7000);
-  fetch(u+'/api/aviso?t='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ctl.signal}).then(()=>{clearTimeout(t);
-    m.innerHTML='Entrandoâ€¦ si no salta, toca aqui: <a href="'+u+'/radio">'+u+'/radio</a>'; location.replace(u+'/radio');
-  }).catch(()=>{clearTimeout(t); m.textContent=APAGADO;});}
-fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.json()).then(j=>ir(atob((j.content||'').replace(/\n/g,''))))
- .catch(()=>fetch(RAW+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(ir).catch(()=>{document.getElementById('m').textContent='No pude leer la direccion. Prueba mas tarde.';}));
+function estado(cl,txt){const e=document.getElementById('est');e.className='est '+cl;document.getElementById('estt').textContent=txt;}
+function activar(u){
+  const L={'l-radio':u+'/radio','l-cli':u+'/cliente','l-inst':u+'/descargar/PerezAI%20-%20Instalar%20cliente.exe'};
+  for(const id in L){const a=document.getElementById(id);a.href=L[id];a.classList.remove('dis');}
+  estado('on','Servidor de Perez EN LÃNEA');
+  // ?ir=radio o ?ir=cliente: entra directo (links viejos)
+  const ir=new URLSearchParams(location.search).get('ir'); if(ir==='radio')location.replace(L['l-radio']); if(ir==='cliente')location.replace(L['l-cli']);
+}
+function apagado(){estado('off','El servidor de Perez estÃ¡ apagado ahora mismo');}
+function probar(u){u=(u||'').trim(); if(!u||u.indexOf('127.0.0.1')>=0){apagado();return;}
+  const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),7000);
+  fetch(u+'/ping?t='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ctl.signal}).then(()=>{clearTimeout(t);activar(u);}).catch(()=>{clearTimeout(t);apagado();});}
+fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.json()).then(j=>probar(atob((j.content||'').replace(/\n/g,''))))
+ .catch(()=>fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(probar).catch(apagado));
 </script></div></body></html>
