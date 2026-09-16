@@ -1,14 +1,18 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RadioPatrulla by Perez</title>
 <style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#070a10;color:#e6ecf5;font-family:Segoe UI,system-ui,Arial;text-align:center;padding:20px}
-a{color:#f2b33d} .c{max-width:520px} .s{color:#9fb0c8}</style></head><body><div class="c">
+a{color:#f2b33d} .c{max-width:520px} .s{color:#9fb0c8;font-size:14px}</style></head><body><div class="c">
 <h1>Radio<span style="color:#f2b33d">Patrulla</span></h1>
 <p id="m">Buscando el servidor de Perezâ€¦</p>
-<p class="s" id="s"></p>
+<p class="s">La central con IA para LSPDFR que te oye, te contesta con voz y te despacha de verdad.</p>
 <script>
-fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(u=>{
-  u=u.trim(); if(!u||u.indexOf('127.0.0.1')>=0){document.getElementById('m').textContent='El servidor de Perez esta apagado ahora mismo. Prueba mas tarde.';return;}
-  document.getElementById('m').innerHTML='Entrandoâ€¦ si no salta, toca aqui: <a href="'+u+'/radio">'+u+'/radio</a>';
-  location.replace(u+'/radio');
-}).catch(()=>{document.getElementById('m').textContent='No pude leer la direccion. Prueba mas tarde.';});
+// La direccion del servidor cambia cada vez que Perez lo arranca (tunel gratis). Se lee de servidor.txt
+// por la API de GitHub (sin cache) y, si falla, del raw.
+const API='https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt';
+const RAW='servidor.txt';
+function ir(u){u=(u||'').trim(); const m=document.getElementById('m');
+  if(!u||u.indexOf('127.0.0.1')>=0){m.textContent='El servidor de Perez esta apagado ahora mismo. Prueba mas tarde.';return;}
+  m.innerHTML='Entrandoâ€¦ si no salta, toca aqui: <a href="'+u+'/radio">'+u+'/radio</a>'; location.replace(u+'/radio');}
+fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.json()).then(j=>ir(atob((j.content||'').replace(/\n/g,''))))
+ .catch(()=>fetch(RAW+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(ir).catch(()=>{document.getElementById('m').textContent='No pude leer la direccion. Prueba mas tarde.';}));
 </script></div></body></html>
