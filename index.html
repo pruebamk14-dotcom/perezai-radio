@@ -10,9 +10,14 @@ a{color:#f2b33d} .c{max-width:520px} .s{color:#9fb0c8;font-size:14px}</style></h
 // por la API de GitHub (sin cache) y, si falla, del raw.
 const API='https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt';
 const RAW='servidor.txt';
+const APAGADO='El servidor de Perez esta apagado ahora mismo. Vuelve a probar en un rato (o escribele por Discord).';
 function ir(u){u=(u||'').trim(); const m=document.getElementById('m');
-  if(!u||u.indexOf('127.0.0.1')>=0){m.textContent='El servidor de Perez esta apagado ahora mismo. Prueba mas tarde.';return;}
-  m.innerHTML='Entrandoâ€¦ si no salta, toca aqui: <a href="'+u+'/radio">'+u+'/radio</a>'; location.replace(u+'/radio');}
+  if(!u||u.indexOf('127.0.0.1')>=0){m.textContent=APAGADO;return;}
+  // Â¿esta vivo de verdad? (si el servidor murio de golpe, el nombre del tunel ya no existe)
+  const ctl=new AbortController(); const t=setTimeout(()=>ctl.abort(),7000);
+  fetch(u+'/api/aviso?t='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ctl.signal}).then(()=>{clearTimeout(t);
+    m.innerHTML='Entrandoâ€¦ si no salta, toca aqui: <a href="'+u+'/radio">'+u+'/radio</a>'; location.replace(u+'/radio');
+  }).catch(()=>{clearTimeout(t); m.textContent=APAGADO;});}
 fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.json()).then(j=>ir(atob((j.content||'').replace(/\n/g,''))))
  .catch(()=>fetch(RAW+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(ir).catch(()=>{document.getElementById('m').textContent='No pude leer la direccion. Prueba mas tarde.';}));
 </script></div></body></html>
