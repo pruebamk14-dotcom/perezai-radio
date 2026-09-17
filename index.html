@@ -1,8 +1,8 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PerezAI Â· by Perez</title>
+<title>PerezAI · by Perez</title>
 <style>
 :root{--f:#070a10;--p:#0f141d;--b:#223047;--t:#e6ecf5;--t2:#9fb0c8;--t3:#6e7f99;--a:#f2b33d;--az:#4da3ff;--v:#35d17a;--r:#ff4d5e}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(900px 500px at 50% -10%,#16223a 0%,var(--f) 60%);color:var(--t);font-family:Segoe UI,system-ui,Arial;padding:40px 16px;display:flex;justify-content:center}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(900px 500px at 50% -10%,#16223a 0%,var(--f) 60%);color:var(--t);font-family:Segoe UI,system-ui,Arial;padding:40px 16px;display:flex;justify-content:center;overflow-x:hidden}
 .c{max-width:640px;width:100%;text-align:center}
 h1{font-size:44px;margin:10px 0 4px;letter-spacing:-.5px}h1 span{color:var(--a)}
 .s{color:var(--t2);font-size:17px;margin:0 0 22px}
@@ -16,30 +16,201 @@ a.card b{display:block;font-size:17px;margin-bottom:3px}a.card small{color:var(-
 a.card .tag{position:absolute;top:-9px;left:16px;background:var(--az);color:#04101f;font-size:10.5px;font-weight:800;letter-spacing:1.5px;border-radius:999px;padding:2px 9px}
 .n{color:var(--t3);font-size:12.5px;margin-top:22px;line-height:1.6}
 code{background:#0b0f16;border:1px solid var(--b);border-radius:6px;padding:1px 6px;color:#ffd27a;font-family:Consolas,monospace;font-size:12.5px}
+
+/* ============ LA LATA ============ */
+.rb{margin:6px auto 26px;position:relative;user-select:none}
+.rb .tit{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.rb .tit b{color:#ff3b4e}
+.rb .pista{font-size:13px;color:var(--t2);margin-top:4px;min-height:18px;transition:opacity .4s}
+.escena{position:relative;height:330px}
+canvas#liq{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.lata{position:absolute;left:50%;top:18px;width:112px;height:214px;margin-left:-56px;cursor:pointer;transform-origin:88% 18%;transition:transform 1.1s cubic-bezier(.5,0,.3,1);filter:drop-shadow(0 18px 24px rgba(0,0,0,.65))}
+.lata:hover{transform:scale(1.03)}
+.lata.abierta:hover{transform:none}
+.lata.vierte{transform:translate(-96px,14px) rotate(-108deg)}
+.lata.vuelve{transform:translate(0,0) rotate(0)}
+.cuerpo{position:absolute;left:4px;right:4px;top:12px;bottom:10px;border-radius:10px/28px;overflow:hidden;
+  background:linear-gradient(90deg,#5b6470 0%,#8d97a4 8%,#e3e8ee 26%,#f6f8fa 34%,#c9d0d8 50%,#8e97a4 72%,#5b6470 92%,#3e454e 100%)}
+.cuerpo:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.35) 28%,rgba(255,255,255,0) 40%,rgba(0,0,0,.12) 70%,rgba(0,0,0,.4) 100%);pointer-events:none}
+.cuerpo svg{position:absolute;inset:0;width:100%;height:100%}
+.aro{position:absolute;left:0;right:0;height:14px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#f2f4f7,#9aa3ae 60%,#4f5760);border:1px solid #2b3139}
+.aro.arriba{top:2px}.aro.abajo{bottom:0;background:radial-gradient(ellipse at 50% 60%,#8f98a3,#4f5760 60%,#2b3139)}
+.tapa{position:absolute;left:10px;right:10px;top:4px;height:12px;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,#d8dde3,#8a939e 70%,#5c646e);z-index:2}
+.boca{position:absolute;left:52%;top:2px;width:30px;height:7px;border-radius:50%;background:#101418;opacity:0;transition:opacity .3s;box-shadow:inset 0 1px 2px #000}
+.anilla{position:absolute;left:34%;top:2px;width:26px;height:8px;border:2px solid #b8c0c9;border-radius:50%;background:rgba(190,198,206,.5);transform-origin:20% 50%;transition:transform .45s cubic-bezier(.3,1.4,.5,1);z-index:3}
+.lata.abierta .anilla{transform:rotate(-64deg) translateY(-6px)}
+.lata.abierta .boca{opacity:1}
+.fizz{position:absolute;left:50%;top:12px;width:0;height:0}
+.fizz i{position:absolute;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#ffd27a);opacity:0;animation:sube 1.2s ease-out forwards}
+@keyframes sube{0%{opacity:.9;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(var(--dx),-70px) scale(1.2)}}
+.rb.hecho .lata{animation:orgullo 3s ease-in-out infinite}
+@keyframes orgullo{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+.rb .rep{display:none;margin-top:6px;font-size:12px;color:var(--t3);cursor:pointer;text-decoration:underline}
+.rb.hecho .rep{display:inline-block}
+@media (prefers-reduced-motion:reduce){.lata,.anilla{transition:none}}
 </style></head><body><div class="c">
 <h1>Perez<span>AI</span></h1>
 <p class="s">Las centrales de radio con IA, los NPCs que hablan, y tu cuenta. Todo en un sitio.</p>
-<div class="est" id="est"><i></i><span id="estt">Buscando el servidor de Perezâ€¦</span></div>
-<div class="g">
-  <a class="card dis nuevo" id="l-gdp" href="#"><span class="tag">NUEVO</span><span class="ic">ðŸ“Ÿ</span><b>Gemini Dispatch Pro v2</b><small>La central en UN solo canal en vivo con Gemini Live: te oye mientras hablas, decide sola quÃ© despachar y contesta en 2-3 s. Policing Redefined, control de trÃ¡fico, segunda voz en persecuciones. Motorola en pantalla.</small></a>
-  <a class="card dis" id="l-radio" href="#"><span class="ic">ðŸ“»</span><b>RadioPatrulla Â· Despacho PRO</b><small>QuÃ© hace, cÃ³mo se instala, la licencia y la descarga del zip.</small></a>
-  <a class="card dis" id="l-cli" href="#"><span class="ic">ðŸ§ </span><b>PerezAI Â· Cliente <small style="color:var(--t3)">(opcional)</small></b><small>Si quieres: tus horas, tus plugins, descargas, chat con Perez y tu hoja. Para jugar NO hace falta.</small></a>
-  <a class="card dis" id="l-inst" href="#"><span class="ic">â¬‡</span><b>Instalador del cliente PerezAI <small style="color:var(--t3)">(opcional)</small></b><small>Pone el acceso directo y el programa de avisos en tu PC.</small></a>
+
+<div class="rb" id="rb">
+  <div class="tit">Powered by <b>Red Bull</b> · toca la lata</div>
+  <div class="escena">
+    <canvas id="liq"></canvas>
+    <div class="lata" id="lata" title="ábrela">
+      <div class="aro arriba"></div>
+      <div class="tapa"><div class="boca" id="boca"></div><div class="anilla"></div></div>
+      <div class="cuerpo">
+        <svg viewBox="0 0 104 192" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="azul" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e3f8f"/><stop offset="1" stop-color="#0b2360"/></linearGradient>
+            <linearGradient id="plata" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8ecf1"/><stop offset="1" stop-color="#aab3bf"/></linearGradient>
+            <radialGradient id="sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffe680"/><stop offset=".7" stop-color="#f7c400"/><stop offset="1" stop-color="#e0a300"/></radialGradient>
+          </defs>
+          <rect width="104" height="192" fill="url(#plata)"/>
+          <polygon points="0,0 104,0 0,96" fill="url(#azul)"/>
+          <polygon points="104,96 104,192 0,192" fill="url(#azul)"/>
+          <polygon points="52,0 104,0 104,48" fill="url(#plata)" opacity=".9"/>
+          <polygon points="0,144 0,192 52,192" fill="url(#plata)" opacity=".9"/>
+          <circle cx="52" cy="78" r="17" fill="url(#sol)"/>
+          <!-- dos toros (silueta propia, estilizada) -->
+          <path d="M31 92 c-4 -6 -6 -14 -2 -20 l-6 -6 c3 -1 6 0 8 3 c3 -4 8 -6 13 -5 l4 4 l-3 4 c4 3 6 8 5 13 l-2 8 l-4 -2 l-2 4 l-4 -2 l-3 3 l-2 -4 z" fill="#d81e2c"/>
+          <path d="M73 92 c4 -6 6 -14 2 -20 l6 -6 c-3 -1 -6 0 -8 3 c-3 -4 -8 -6 -13 -5 l-4 4 l3 4 c-4 3 -6 8 -5 13 l2 8 l4 -2 l2 4 l4 -2 l3 3 l2 -4 z" fill="#d81e2c"/>
+          <text x="52" y="120" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="14" fill="#d81e2c" letter-spacing="1">RED BULL</text>
+          <text x="52" y="134" text-anchor="middle" font-family="Arial" font-weight="700" font-size="7" fill="#0b2360" letter-spacing="2">ENERGY DRINK</text>
+          <text x="52" y="176" text-anchor="middle" font-family="Arial" font-size="6" fill="#ffffff" letter-spacing="1" opacity=".8">EDICIÓN PEREZAI · 250 ml</text>
+        </svg>
+      </div>
+      <div class="aro abajo"></div>
+      <div class="fizz" id="fizz"></div>
+    </div>
+  </div>
+  <div class="pista" id="pista">Ábrela. Te va a gustar lo que sale.</div>
+  <span class="rep" onclick="reiniciarLata()">otra vez</span>
 </div>
-<p class="n">Para los plugins solo necesitas <b>tu llave</b> (una lÃ­nea en el ini, te la da Perez) y <b>tu key de Gemini</b> (gratis). Sin cuentas ni registros.<br>Si aquÃ­ dice "apagado", Perez no tiene el servidor encendido ahora; vuelve en un rato.</p>
+
+<div class="est" id="est"><i></i><span id="estt">Buscando el servidor de Perez…</span></div>
+<div class="g">
+  <a class="card dis nuevo" id="l-gdp" href="#"><span class="tag">NUEVO</span><span class="ic">📟</span><b>Gemini Dispatch Pro v2.1</b><small>La central en UN solo canal en vivo con Gemini Live: te oye mientras hablas, decide sola qué despachar y contesta en 2-3 s. Refuerzos con código, Policing Redefined, control de tráfico, segunda voz en persecuciones. Motorola en pantalla.</small></a>
+  <a class="card dis" id="l-cli" href="#"><span class="ic">🧠</span><b>PerezAI · Cliente <small style="color:var(--t3)">(opcional)</small></b><small>Si quieres: tus horas, tus plugins, descargas, chat con Perez y tu hoja. Para jugar NO hace falta.</small></a>
+  <a class="card dis" id="l-staff" href="#"><span class="ic">🥈</span><b>Staff <small style="color:var(--t3)">(solo subowner)</small></b><small>Entrada del staff con tu llave: crear llaves y verlas. Todo queda apuntado.</small></a>
+</div>
+<p class="n">Para los plugins solo necesitas <b>tu llave</b> (una línea en el ini, te la da Perez) y <b>tu key de Gemini</b> (gratis). Sin cuentas ni registros.<br>Si aquí dice "apagado", Perez no tiene el servidor encendido ahora; vuelve en un rato.</p>
+
 <script>
+/* ---------------- servidor de hoy ---------------- */
 const API='https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt';
 function estado(cl,txt){const e=document.getElementById('est');e.className='est '+cl;document.getElementById('estt').textContent=txt;}
 function activar(u){
-  const L={'l-gdp':u+'/gdp','l-radio':u+'/radio','l-cli':u+'/cliente','l-inst':u+'/descargar/PerezAI%20-%20Instalar%20cliente.exe'};
+  const L={'l-gdp':u+'/gdp','l-cli':u+'/cliente','l-staff':u+'/staff'};
   for(const id in L){const a=document.getElementById(id);a.href=L[id];a.classList.remove('dis');}
-  estado('on','Servidor de Perez EN LÃNEA');
-  const ir=new URLSearchParams(location.search).get('ir'); if(ir==='radio')location.replace(L['l-radio']); if(ir==='cliente')location.replace(L['l-cli']); if(ir==='gdp')location.replace(L['l-gdp']);
+  estado('on','Servidor de Perez EN LÍNEA');
+  const ir=new URLSearchParams(location.search).get('ir'); if(ir==='radio')location.replace(u+'/radio'); if(ir==='cliente')location.replace(L['l-cli']); if(ir==='gdp')location.replace(L['l-gdp']); if(ir==='staff')location.replace(L['l-staff']);
 }
-function apagado(){estado('off','El servidor de Perez estÃ¡ apagado ahora mismo');}
+function apagado(){estado('off','El servidor de Perez está apagado ahora mismo');}
 function probar(u){u=(u||'').trim(); if(!u||u.indexOf('127.0.0.1')>=0){apagado();return;}
   const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),7000);
   fetch(u+'/ping?t='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ctl.signal}).then(()=>{clearTimeout(t);activar(u);}).catch(()=>{clearTimeout(t);apagado();});}
 fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(r=>r.json()).then(j=>probar(atob((j.content||'').replace(/\n/g,''))))
  .catch(()=>fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(probar).catch(apagado));
+
+/* ---------------- LA LATA: pss + el liquido escribe ADRIANMK ---------------- */
+(function(){
+  const NOMBRE='ADRIANMK';
+  const rb=document.getElementById('rb'),lata=document.getElementById('lata'),pista=document.getElementById('pista'),fizz=document.getElementById('fizz');
+  const cv=document.getElementById('liq'),cx=cv.getContext('2d');
+  let W,H,ratio=Math.min(2,window.devicePixelRatio||1),objetivos=[],puestos=[],vuelo=[],fase='cerrada',raf=0,shimmer=0,burbujas=[];
+  function tam(){const r=cv.parentElement.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*ratio;cv.height=H*ratio;cx.setTransform(ratio,0,0,ratio,0,0);}
+  window.addEventListener('resize',()=>{tam();if(fase==='hecho')pintar();});tam();
+
+  // --- sonido: el PSS de verdad (ruido filtrado) + el click de la anilla
+  function pss(){
+    try{
+      const A=new (window.AudioContext||window.webkitAudioContext)();
+      const dur=1.15,buf=A.createBuffer(1,A.sampleRate*dur,A.sampleRate),d=buf.getChannelData(0);
+      for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+      const src=A.createBufferSource();src.buffer=buf;
+      const bp=A.createBiquadFilter();bp.type='bandpass';bp.frequency.value=5200;bp.Q.value=.7;
+      const hp=A.createBiquadFilter();hp.type='highpass';hp.frequency.value=1800;
+      const g=A.createGain();g.gain.setValueAtTime(0,A.currentTime);g.gain.linearRampToValueAtTime(.55,A.currentTime+.02);g.gain.exponentialRampToValueAtTime(.18,A.currentTime+.35);g.gain.exponentialRampToValueAtTime(.001,A.currentTime+dur);
+      bp.frequency.setValueAtTime(6500,A.currentTime);bp.frequency.exponentialRampToValueAtTime(2600,A.currentTime+dur);
+      src.connect(hp);hp.connect(bp);bp.connect(g);g.connect(A.destination);src.start();
+      // click metalico de la anilla
+      const o=A.createOscillator(),og=A.createGain();o.type='square';o.frequency.setValueAtTime(1900,A.currentTime);o.frequency.exponentialRampToValueAtTime(600,A.currentTime+.05);
+      og.gain.setValueAtTime(.12,A.currentTime);og.gain.exponentialRampToValueAtTime(.001,A.currentTime+.07);o.connect(og);og.connect(A.destination);o.start();o.stop(A.currentTime+.08);
+      // glugluglu suave mientras vierte
+      setTimeout(()=>{for(let k=0;k<6;k++){const t=A.currentTime+k*.28;const b=A.createOscillator(),bg=A.createGain();b.type='sine';b.frequency.setValueAtTime(180+Math.random()*90,t);b.frequency.exponentialRampToValueAtTime(420,t+.12);bg.gain.setValueAtTime(0,t);bg.gain.linearRampToValueAtTime(.08,t+.03);bg.gain.exponentialRampToValueAtTime(.001,t+.16);b.connect(bg);bg.connect(A.destination);b.start(t);b.stop(t+.18);}},1000);
+    }catch(e){}
+  }
+  function burbujitas(n){for(let i=0;i<n;i++){const s=document.createElement('i');s.style.setProperty('--dx',(Math.random()*60-30)+'px');s.style.left=(Math.random()*20-4)+'px';s.style.animationDelay=(Math.random()*.4)+'s';fizz.appendChild(s);setTimeout(()=>s.remove(),1700);}}
+
+  // --- el nombre como puntos (mascara de texto), de abajo hacia arriba
+  function prepararObjetivos(){
+    const off=document.createElement('canvas');const oc=off.getContext('2d');
+    const fw=Math.min(W-20,620);off.width=fw;off.height=150;
+    let size=150;oc.font=`900 ${size}px "Arial Black",Impact,Arial,sans-serif`;
+    while(oc.measureText(NOMBRE).width>fw-16&&size>40){size-=4;oc.font=`900 ${size}px "Arial Black",Impact,Arial,sans-serif`;}
+    oc.fillStyle='#fff';oc.textAlign='center';oc.textBaseline='middle';oc.fillText(NOMBRE,fw/2,80);
+    const img=oc.getImageData(0,0,fw,150).data,paso=W<420?4:3.2,x0=(W-fw)/2,y0=H-150-4;
+    objetivos=[];
+    for(let y=0;y<150;y+=paso)for(let x=0;x<fw;x+=paso){const i=((y|0)*fw+(x|0))*4;if(img[i+3]>128)objetivos.push({x:x0+x+(Math.random()-.5)*1.2,y:y0+y+(Math.random()-.5)*1.2});}
+    // de abajo hacia arriba, con un poco de desorden pa' que parezca liquido
+    objetivos.sort((a,b)=>(b.y-a.y)+(Math.random()-.5)*26);
+  }
+  function boca(){const r=document.getElementById('boca').getBoundingClientRect(),c=cv.getBoundingClientRect();return{x:r.left+r.width/2-c.left,y:r.top+r.height/2-c.top};}
+
+  function abrir(){
+    if(fase!=='cerrada')return;fase='abriendo';
+    lata.classList.add('abierta');pss();burbujitas(26);pista.textContent='pssss…';
+    setTimeout(()=>{lata.classList.add('vierte');pista.textContent='';},850);
+    setTimeout(()=>{prepararObjetivos();puestos=[];vuelo=[];fase='vierte';cancelAnimationFrame(raf);raf=requestAnimationFrame(paso);},1500);
+  }
+  function paso(){
+    const b=boca();
+    // salen gotas de la boca hacia su sitio en las letras
+    if(fase==='vierte'){const n=Math.min(objetivos.length,W<420?14:22);for(let i=0;i<n;i++){const o=objetivos.shift();vuelo.push({x0:b.x,y0:b.y,x1:o.x,y1:o.y,t:0,d:.9+Math.random()*.5,cx:b.x+(o.x-b.x)*.35+(Math.random()-.5)*40,cy:Math.min(b.y,o.y)-60-Math.random()*80,r:1.6+Math.random()*1.4});}
+      if(!objetivos.length){fase='cayendo';}}
+    cx.clearRect(0,0,W,H);
+    // puestos (el liquido que ya forma las letras)
+    pintarPuestos();
+    // gotas en vuelo (arco)
+    cx.globalCompositeOperation='lighter';
+    for(let i=vuelo.length-1;i>=0;i--){const g=vuelo[i];g.t+=.016/g.d*1.9;const t=Math.min(1,g.t),u=1-t;
+      const x=u*u*g.x0+2*u*t*g.cx+t*t*g.x1,y=u*u*g.y0+2*u*t*g.cy+t*t*g.y1;
+      cx.beginPath();cx.arc(x,y,g.r+ (t<.15?1.5:0),0,6.283);cx.fillStyle='rgba(255,196,60,.95)';cx.fill();
+      cx.beginPath();cx.arc(x-1,y-1,g.r*.45,0,6.283);cx.fillStyle='rgba(255,255,255,.7)';cx.fill();
+      if(t>=1){puestos.push({x:g.x1,y:g.y1,r:g.r,n:Math.random()});vuelo.splice(i,1);}}
+    // el chorro cerca de la boca
+    if(fase==='vierte'){cx.beginPath();cx.moveTo(b.x-4,b.y);cx.quadraticCurveTo(b.x+10,b.y+40,b.x+30,b.y+95);cx.quadraticCurveTo(b.x+10,b.y+40,b.x+4,b.y);cx.fillStyle='rgba(255,190,60,.55)';cx.fill();}
+    cx.globalCompositeOperation='source-over';
+    if(fase==='cayendo'&&!vuelo.length){fase='hecho';terminar();return;}
+    raf=requestAnimationFrame(paso);
+  }
+  function pintarPuestos(){
+    if(!puestos.length)return;
+    cx.save();cx.globalCompositeOperation='lighter';
+    cx.shadowColor='rgba(255,170,40,.9)';cx.shadowBlur=14;
+    for(const p of puestos){cx.beginPath();cx.arc(p.x,p.y,p.r+1.1,0,6.283);cx.fillStyle=p.n<.5?'#f7c341':'#ee9f1c';cx.fill();}
+    cx.shadowBlur=0;
+    for(const p of puestos){if(p.n>.82){cx.beginPath();cx.arc(p.x-.7,p.y-.7,.9,0,6.283);cx.fillStyle='rgba(255,255,255,.55)';cx.fill();}}
+    cx.restore();
+  }
+  function pintar(){cx.clearRect(0,0,W,H);pintarPuestos();}
+  function terminar(){
+    lata.classList.remove('vierte');lata.classList.add('vuelve');rb.classList.add('hecho');
+    pista.innerHTML='<b style="color:#f7c341">ADRIANMK</b> · escrito con Red Bull, como todo lo demás. ¡Salud! 🥤';
+    // brillo que pasa + burbujas que suben dentro de las letras
+    let t0=performance.now();burbujas=[];
+    function brillo(now){const t=(now-t0)/1000;cx.clearRect(0,0,W,H);pintarPuestos();
+      cx.save();cx.globalCompositeOperation='lighter';
+      const x=-160+((t*220)%(W+320));const g=cx.createLinearGradient(x,0,x+160,0);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(255,255,255,.28)');g.addColorStop(1,'rgba(255,255,255,0)');
+      cx.fillStyle=g;cx.fillRect(x,H-160,160,160);
+      if(Math.random()<.35&&puestos.length){const p=puestos[(Math.random()*puestos.length)|0];burbujas.push({x:p.x,y:p.y,v:.3+Math.random()*.5,r:.8+Math.random()*1.2,a:1});}
+      for(let i=burbujas.length-1;i>=0;i--){const q=burbujas[i];q.y-=q.v;q.a-=.012;if(q.a<=0){burbujas.splice(i,1);continue;}cx.beginPath();cx.arc(q.x,q.y,q.r,0,6.283);cx.fillStyle=`rgba(255,255,255,${q.a*.7})`;cx.fill();}
+      cx.restore();
+      if(fase==='hecho')raf=requestAnimationFrame(brillo);}
+    raf=requestAnimationFrame(brillo);
+  }
+  window.reiniciarLata=function(){cancelAnimationFrame(raf);fase='cerrada';puestos=[];vuelo=[];objetivos=[];cx.clearRect(0,0,W,H);rb.classList.remove('hecho');lata.classList.remove('abierta','vierte','vuelve');pista.textContent='Ábrela. Te va a gustar lo que sale.';};
+  lata.addEventListener('click',abrir);
+})();
 </script></div></body></html>
