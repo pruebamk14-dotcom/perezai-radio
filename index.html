@@ -219,6 +219,8 @@ function activar(u){
   var L={'l-gdp':u+'/gdp','l-gdpz':u+'/descargar/GeminiDispatchPro_v3.zip','l-cli':u+'/cliente','l-staff':u+'/staff'};
   for(var id in L){var a=document.getElementById(id);a.href=L[id];a.classList.remove('dis')}
   estado('on','Servidor de Perez EN LÍNEA');sOnline();
+  // precios reales (los que Perez pone en su panel)
+  fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){if(!d||!d.ok)return;var p=d.planes,m=d.moneda||'€',f=function(n){return (Number(n)||0).toFixed(2).replace('.',',')+' '+m};var ns=document.querySelectorAll('.precio .n');if(ns.length>=3){ns[0].textContent=f(p.mes.precio);ns[1].textContent=f(p.dosMeses.precio);ns[2].textContent=f(p.lifetime.precio)}}).catch(function(){});
   var ir=new URLSearchParams(location.search).get('ir');if(ir==='radio')location.replace(u+'/radio');if(ir==='cliente')location.replace(L['l-cli']);if(ir==='gdp')location.replace(L['l-gdp']);if(ir==='staff')location.replace(L['l-staff'])}
 function apagado(){estado('off','El servidor de Perez está apagado ahora mismo')}
 function probar(u){u=(u||'').trim();if(!u||u.indexOf('127.0.0.1')>=0){apagado();return}var ctl=new AbortController();var t=setTimeout(function(){ctl.abort()},7000);
