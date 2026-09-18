@@ -133,11 +133,10 @@ canvas#liq{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
           <div class="card"><div class="ico">🎙️</div><b>Con tus palabras</b><small>Sin códigos obligatorios. Refuerzos con código, ambulancia, aéreo, consultas reales.</small></div>
         </div>
         <div class="precios">
-          <div class="precio"><div class="n">4,99 €</div><b>1 mes</b><br><small>una persona, una PC</small></div>
-          <div class="precio"><div class="n">7,99 €</div><b>2 meses</b><br><small>sale a 4 € el mes</small></div>
-          <div class="precio oro"><div class="n">14,99 €</div><b>Lifetime</b><br><small>para siempre, todas las versiones</small></div>
+          <div class="precio"><div class="n">12,00 €</div><b>1 mes</b><br><small>una persona, una PC</small></div>
+          <div class="precio oro"><div class="n">30,00 €</div><b>De por vida</b><br><small>pagas una vez, todas las versiones</small></div>
         </div>
-        <div class="nota">Necesitas tu <b>llave</b> (te la da Perez o Cristian, con recibo) y tu <b>key de Gemini</b> gratis. Sin cuentas ni registros. No hay devoluciones: la llave queda amarrada a tu PC.</div>
+        <div class="nota">Se paga por <b>Patreon</b>, PayPal, Bizum o transferencia a Perez o a Cristian, y ellos te hacen <b>tu llave personal</b> con recibo. <b>Sin llave el plugin no arranca.</b> La llave queda amarrada a tu PC y tu conexión: es tuya y de nadie más. Además necesitas tu <b>key de Gemini</b> gratis. No hay devoluciones.</div>
       </div>
 
       <!-- CLIENTE -->
@@ -223,7 +222,7 @@ function activar(u){
   for(var id in L){var a=document.getElementById(id);a.href=L[id];a.classList.remove('dis')}
   estado('on','Servidor de Perez EN LÍNEA');sOnline();
   // precios reales (los que Perez pone en su panel)
-  fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){if(!d||!d.ok)return;var p=d.planes,m=d.moneda||'€',f=function(n){return (Number(n)||0).toFixed(2).replace('.',',')+' '+m};var ns=document.querySelectorAll('.precio .n');if(ns.length>=3){ns[0].textContent=f(p.mes.precio);ns[1].textContent=f(p.dosMeses.precio);ns[2].textContent=f(p.lifetime.precio)}}).catch(function(){});
+  fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){if(!d||!d.ok)return;var p=d.planes,m=d.moneda||'€',f=function(n){return (Number(n)||0).toFixed(2).replace('.',',')+' '+m};var ns=document.querySelectorAll('.precio .n');if(ns.length>=2&&p.mes&&p.lifetime){ns[0].textContent=f(p.mes.precio);ns[1].textContent=f(p.lifetime.precio)}}).catch(function(){});
   var ir=new URLSearchParams(location.search).get('ir');if(ir==='radio')location.replace(u+'/radio');if(ir==='cliente')location.replace(L['l-cli']);if(ir==='gdp')location.replace(L['l-gdp']);if(ir==='staff')location.replace(L['l-staff'])}
 function apagado(){estado('off','El servidor de Perez está apagado ahora mismo')}
 function probar(u){u=(u||'').trim();if(!u||u.indexOf('127.0.0.1')>=0){apagado();return}var ctl=new AbortController();var t=setTimeout(function(){ctl.abort()},7000);
