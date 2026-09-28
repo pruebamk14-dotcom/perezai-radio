@@ -1,1 +1,1 @@
-a1790170393424|actualizacion|9|PEREZAI · ACTUALIZACION|Disponible nueva actualizacion en la carpeta raiz esta un archibo llamado  Configurador GDP , error comenten de lo que vean
+a1790630527312|actualizacion|9|PEREZAI · ACTUALIZACION|GeminiDispatchPro 3.140 ya está: tableta nueva con los datos reales de pdComp y radar, llamadas del 112 para hablar con NPCAI (el que llama ya tiene sentido), cámaras de la central, coches que se apartan con intermitente y criminales que admiten su banda al detenerlos. Se instala sola al cerrar el juego.
