@@ -1,1 +1,1 @@
-https://lcd-cart-strong-andrews.trycloudflare.com
+http://127.0.0.1:8791
