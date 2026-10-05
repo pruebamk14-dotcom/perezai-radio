@@ -1,1 +1,1 @@
-https://southern-scoop-ancient-whether.trycloudflare.com
+http://127.0.0.1:8791
