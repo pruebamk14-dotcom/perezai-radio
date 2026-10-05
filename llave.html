@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex">
+<title>Tu llave · Gemini Dispatch Pro</title>
+<style>body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#0d1117;color:#e6edf3;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+.c{width:100%;max-width:460px;background:#161b22;border:1px solid #30363d;border-radius:16px;padding:28px;text-align:center}h1{font-size:22px;margin:0 0 8px}p{color:#9da7b3;line-height:1.5}</style></head>
+<body><div class="c"><h1>Tu llave de Gemini Dispatch Pro</h1><p id="t">Conectando con el servidor…</p></div>
+<script>
+// Direccion FIJA para pedir la llave. El servidor cambia de direccion en cada arranque: esta pagina mira cual es la de hoy
+// y te lleva alli. Tambien es la "vuelta" de Entrar con Patreon (trae code y state, que se pasan tal cual al servidor).
+(function(){
+  var q=new URLSearchParams(location.search),t=document.getElementById('t');
+  function ir(u){u=(u||'').trim().replace(/\/$/,'');
+    if(!/^https:\/\/[a-z0-9.-]+$/i.test(u)){t.textContent='El servidor está apagado ahora mismo. Prueba más tarde.';return}
+    var d='/llave';
+    if(q.has('code')||q.has('state')||q.has('error')){var p=new URLSearchParams();if(q.get('code'))p.set('code',q.get('code'));if(q.get('state'))p.set('state',q.get('state'));d='/patreon/vuelta?'+p.toString()}
+    location.replace(u+d)}
+  fetch('https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}})
+   .then(function(r){return r.json()}).then(function(j){ir(atob((j.content||'').replace(/\n/g,'')))})
+   .catch(function(){fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(ir).catch(function(){ir('')})});
+})();
+</script></body></html>
