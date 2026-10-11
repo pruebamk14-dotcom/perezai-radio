@@ -1,1 +1,1 @@
-a1791399789081|actualizacion|9|PEREZAI · ACTUALIZACION|update listo instalen el oiv q esta en extras
+a1791737682999|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.2 (rev. 3.450) ya está. Inventario nuevo (Ctrl+I) que sustituye al cinturón: empiezas con arma y táser y recoges el resto en la armería de comisaría (armero y Kit de patrulla); se actualiza solo. El NPC ya no inventa su ficha, y dron y táser arreglados. Para cargarla sin cerrar: F4 > ReloadAllPlugins (o reinicia GTA). Inventario y objetos OpenIV: web > Descargas.
