@@ -1,1 +1,1 @@
-a1791911380934|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.18: el HUD de abajo dice que es cada cosa (VIDA, CHALECO, HAMBRE, SED). GDP Radio 0.4: RePag sube y AvPag baja el volumen de la radio (la central no se toca). Se actualizan solos.
+a1791911912071|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Radio 0.5: el volumen de la radio de la patrulla va con F10: Ctrl+F10 sube, Mayus+F10 baja, F10 enciende y apaga. RePag/AvPag siguen siendo el volumen de la central. Se actualiza sola.
