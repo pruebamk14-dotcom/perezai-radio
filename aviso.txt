@@ -1,1 +1,1 @@
-a1791899618914|actualizacion|9|PEREZAI · ACTUALIZACION|Nueva actualizacion de Gemini Dispatch Pro (Update 1.2, rev. 3.472): fichas de bajas con motivo, taser seguro, telefono con WhatsApp y camara. Se instala sola.
+a1791900599882|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.16: arregla un cierre del juego que podia pasar con el HUD de vida/chaleco/hambre/sed. Entra sola desde Plugins > ExpandedInventory o descargala de nuevo.
