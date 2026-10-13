@@ -1,1 +1,1 @@
-a1791908866675|actualizacion|9|PEREZAI · ACTUALIZACION|NUEVO en SantosGram > Descargas: LA CARCEL Y EL JUZGADO en un instalador de OpenIV (.oiv): arrastralo a OpenIV, carpeta mods, y lo hace todo solo. Y GDP Radio 0.3: mas baja para oir bien a la central, y se actualiza sola.
+a1791911380934|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.18: el HUD de abajo dice que es cada cosa (VIDA, CHALECO, HAMBRE, SED). GDP Radio 0.4: RePag sube y AvPag baja el volumen de la radio (la central no se toca). Se actualizan solos.
