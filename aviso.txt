@@ -1,1 +1,1 @@
-a1791900599882|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.16: arregla un cierre del juego que podia pasar con el HUD de vida/chaleco/hambre/sed. Entra sola desde Plugins > ExpandedInventory o descargala de nuevo.
+a1791903711807|actualizacion|9|PEREZAI · ACTUALIZACION|Gemini Dispatch Pro 3.473: celdas con E (abrir, cerrar, meter y sacar al detenido) que se cierran solas, sala de interrogatorios con sillas en E y grabacion, HUD con iconos nuevos. GDP Radio mas baja y ahora se actualiza sola. Se instala sola.
