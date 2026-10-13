@@ -1,1 +1,1 @@
-a1791892992856|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.2 (3.471) lista: ahora, si abates a alguien, la central te pide el motivo y Asuntos Internos lo valora; y el taser ya no quita vida de verdad. Se instala al cerrar GTA. Si tienes apagada la recarga automatica: ALT > Actualizar ahora, o escribe ReloadAllPlugins en la consola de RAGE (F4).
+a1791899618914|actualizacion|9|PEREZAI · ACTUALIZACION|Nueva actualizacion de Gemini Dispatch Pro (Update 1.2, rev. 3.472): fichas de bajas con motivo, taser seguro, telefono con WhatsApp y camara. Se instala sola.
