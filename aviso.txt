@@ -1,1 +1,1 @@
-a1791904485506|actualizacion|9|PEREZAI · ACTUALIZACION|Gemini Dispatch Pro 3.474: cada puerta de la carcel lleva su texto con la E (abrir, cerrar, meter, sacar) y el inventario de GDP vuelve a actualizarse solo. Se instala sola.
+a1791905270218|actualizacion|9|PEREZAI · ACTUALIZACION|Gemini Dispatch Pro 3.475: TRIBUNAL (ALT > Tribunal: llevar al detenido a juicio) con juez, fiscal, defensa, publico y testigos. Y Asuntos Internos revisa la bodycam y las camaras: si mientes sobre una baja, te pilla.
