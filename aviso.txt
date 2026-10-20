@@ -1,1 +1,1 @@
-
+a1792460556627|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.2 (rev. 3.567) + Inventario 1.39: la bodycam de la web se ve como cámara de pecho y mucho más fluida, llamadas sin subtítulos, tu patrulla sale en el mapa en vivo de SantosGram con tu país, el helicóptero aguanta mucho más en el aire y el inventario vuelve a usar solo el maletero. Cierra GTA del todo para instalarla.
