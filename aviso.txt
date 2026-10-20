@@ -1,1 +1,1 @@
-a1792503511766|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.3.3: ambientadores de Texas y Cuba colgando del retrovisor del Explorer Baytown, que se balancean con las curvas (se apagan en Tableta › Ajustes › Patrulla). Cierra GTA del todo para instalarla.
+a1792507744801|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.42: las armerías de las comisarías tienen mucho más material (armas, cargadores, munición, chalecos, esposas, botiquines…) y se reponen cada 30 minutos en vez de cada 4 horas. Se instala solo al cerrar GTA.
