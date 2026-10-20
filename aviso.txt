@@ -1,1 +1,1 @@
-a1792507744801|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.42: las armerías de las comisarías tienen mucho más material (armas, cargadores, munición, chalecos, esposas, botiquines…) y se reponen cada 30 minutos en vez de cada 4 horas. Se instala solo al cerrar GTA.
+a1792507896350|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.3.4: arreglado el menú de la patrulla (F7): al bajar una ventanilla se daba por rota y ya no se podía subir. Ahora sube y baja bien. Cierra GTA del todo para instalarla.
