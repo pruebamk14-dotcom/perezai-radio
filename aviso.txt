@@ -1,1 +1,1 @@
-a1792501591869|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.3.2 ya disponible: controles y animaciones de la patrulla con F7 (ventanillas, foco, gestos al tráfico, micro en la mano, cubrirse tras la puerta…) y el apartado «Patrulla» en la tableta para apagarlas. Cierra GTA del todo para instalarla.
+a1792503511766|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.3.3: ambientadores de Texas y Cuba colgando del retrovisor del Explorer Baytown, que se balancean con las curvas (se apagan en Tableta › Ajustes › Patrulla). Cierra GTA del todo para instalarla.
