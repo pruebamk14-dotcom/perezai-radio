@@ -1,1 +1,1 @@
-a1792603405716|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.4.1: tableta completamente nueva (carcasa realista, botón de encendido que la cierra, brillo con + y −, diseño moderno con el nombre de TU agencia), fotos de las autoridades arregladas y soporte para la comisaría Mission Row ampliada. Cierra GTA del todo para instalarla.
+a1792605388891|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.4.2: si tienes instalada la comisaría Mission Row ampliada, GDP carga solo los mapas MP para que se vea su interior (ya no hace falta trainer). Cierra GTA del todo para instalarla.
