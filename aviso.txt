@@ -1,1 +1,1 @@
-a1792839762200|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.7.3: arreglado un crash de GTA. Los tatuajes de tu personaje ya no se quitan y se vuelven a poner cada 30 segundos, que hacía trabajar la memoria sin parar. Cierra GTA del todo para que se instale.
+a1792840998636|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.7.4: llama a la prensa. Nuevo contacto «LSN · Redacción» en el móvil: viene una reportera con su cámara, te entrevista en directo y sale en SantosGram (móvil y web) con foto y audio. La central espera mientras hablas con ella. Cierra GTA para instalar.
