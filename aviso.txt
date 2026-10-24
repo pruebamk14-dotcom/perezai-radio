@@ -1,1 +1,1 @@
-a1792864187082|urgente|9|PEREZAI · URGENTE|se esta trabajando para mejora la experiencia de voz de la central , puede q le suene raro hay muchas mejoras y cosas nuevo ,  si tiene bugs de las ecenas , mandale el logs a perezLS
+a1792864438102|actualizacion|9|PEREZAI · ACTUALIZACION|🎙️ Estamos trabajando para mejorar la experiencia de voz de la central. Puede que suene un poco raro: hay muchas mejoras y cosas nuevas. Si encuentras bugs en las escenas, mándale tus logs a PerezLS.
