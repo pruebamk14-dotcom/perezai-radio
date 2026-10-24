@@ -1,1 +1,1 @@
-a1792856288924|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.7.9: la reportera de LSN que te contesta al teléfono es la misma que llega (ya no dice «sin señal»), y la furgoneta sale enseguida y se ve en el mapa. Con GTA abierto: cuando GDP avise, escribe ReloadAllPlugins en F4.
+a1792856664125|actualizacion|9|PEREZAI · ACTUALIZACION|GDP Inventory 1.49: si apagas el arsenal libre y devuelves lo que cogiste con él, a los 30 s vuelves a puntuar (antes tardaba 5 min y el equipo normal contaba como del arsenal libre). GDP lo instala solo; escribe ReloadAllPlugins en F4.
