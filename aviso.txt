@@ -1,1 +1,1 @@
-a1792838659704|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.7.2: el traslado del detenido ya no falla aunque la central lo dé por hecho; si la IA no lo manda de verdad, GDP lo pide solo. Cierra GTA del todo para que se instale.
+a1792839762200|actualizacion|9|PEREZAI · ACTUALIZACION|Update 1.7.3: arreglado un crash de GTA. Los tatuajes de tu personaje ya no se quitan y se vuelven a poner cada 30 segundos, que hacía trabajar la memoria sin parar. Cierra GTA del todo para que se instale.
