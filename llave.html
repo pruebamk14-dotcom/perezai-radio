@@ -11,12 +11,16 @@
 (function(){
   var q=new URLSearchParams(location.search),t=document.getElementById('t');
   function ir(u){u=(u||'').trim().replace(/\/$/,'');
-    if(!/^https:\/\/[a-z0-9.-]+$/i.test(u)){t.textContent='El servidor está apagado ahora mismo. Prueba más tarde.';return}
+    if(!/^https:\/\/[a-z0-9.-]+$/i.test(u)){t.textContent='Los servidores están apagados ahora mismo. Prueba más tarde.';return}
     var d='/llave';
     if(q.has('code')||q.has('state')||q.has('error')){var p=new URLSearchParams();if(q.get('code'))p.set('code',q.get('code'));if(q.get('state'))p.set('state',q.get('state'));d='/patreon/vuelta?'+p.toString()}
     location.replace(u+d)}
-  fetch('https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}})
-   .then(function(r){return r.json()}).then(function(j){ir(atob((j.content||'').replace(/\n/g,'')))})
-   .catch(function(){fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(ir).catch(function(){ir('')})});
+  function leerGh(arch){return fetch('https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/'+arch+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return atob((j.content||'').replace(/\n/g,''))})
+   .catch(function(){return fetch(arch+'?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).catch(function(){return ''})})}
+  function vivo(u){u=(u||'').trim().replace(/\/+$/,'');if(!/^https:\/\/[a-z0-9.-]+$/i.test(u))return Promise.resolve(null);var ctl=new AbortController();var t=setTimeout(function(){ctl.abort()},8000);
+   return fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store',signal:ctl.signal}).then(function(r){return r.json()}).then(function(d){clearTimeout(t);return d&&d.ok?u:null}).catch(function(){clearTimeout(t);return null})}
+  // primero el de Perez; si no contesta, el de reserva de Cristian (solo está encendido cuando el de Perez está caído)
+  function servidorVivo(){return leerGh('servidor.txt').then(vivo).then(function(u){if(u)return {u:u,reserva:false};return leerGh('servidor_respaldo.txt').then(vivo).then(function(r){return r?{u:r,reserva:true}:null})}).catch(function(){return null})}
+  servidorVivo().then(function(s){ir(s?s.u:'')});
 })();
 </script></body></html>
