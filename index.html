@@ -215,20 +215,22 @@ function paso(){x.clearRect(0,0,W,H);for(var i=0;i<P.length;i++){var p=P[i];p.x+
 for(var k=O.length-1;k>=0;k--){var o=O[k];o.r+=1.6;o.a-=.0035;if(o.a<=0){O.splice(k,1);continue}for(var m=0;m<3;m++){x.beginPath();x.arc(o.x,o.y,Math.max(0,o.r-m*22),0,6.283);x.strokeStyle='rgba(62,224,216,'+(o.a*(1-m*.3))+')';x.lineWidth=1.2;x.stroke()}}if(!reduce)requestAnimationFrame(paso)}paso()})();
 
 /* ---------------- servidor de hoy ---------------- */
-var API='https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor.txt';
+function leerGh(arch){return fetch('https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/'+arch+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return atob((j.content||'').replace(/\n/g,''))})
+ .catch(function(){return fetch(arch+'?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).catch(function(){return ''})})}
+function vivo(u){u=(u||'').trim().replace(/\/+$/,'');if(!/^https:\/\/[a-z0-9.-]+$/i.test(u))return Promise.resolve(null);var ctl=new AbortController();var t=setTimeout(function(){ctl.abort()},8000);
+ return fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store',signal:ctl.signal}).then(function(r){return r.json()}).then(function(d){clearTimeout(t);return d&&d.ok?u:null}).catch(function(){clearTimeout(t);return null})}
+// primero el de Perez; si no contesta, el de reserva de Cristian (solo está encendido cuando el de Perez está caído)
+function servidorVivo(){return leerGh('servidor.txt').then(vivo).then(function(u){if(u)return {u:u,reserva:false};return leerGh('servidor_respaldo.txt').then(vivo).then(function(r){return r?{u:r,reserva:true}:null})}).catch(function(){return null})}
 function estado(cl,txt){var e=document.getElementById('est');e.className='est '+cl;document.getElementById('estt').textContent=txt}
-function activar(u){
+function activar(u,reserva){
   var L={'l-gdp':u+'/gdp','l-gdpz':u+'/descargar/GeminiDispatchPro_v3.zip','l-cli':u+'/cliente','l-staff':u+'/staff'};
   for(var id in L){var a=document.getElementById(id);a.href=L[id];a.classList.remove('dis')}
-  estado('on','Servidor de Perez EN LÍNEA');sOnline();
+  estado('on',reserva?'SERVIDOR DE RESERVA (CRISTIAN) CORRIENDO':'Servidor de Perez EN LÍNEA');sOnline();
   // precios reales (los que Perez pone en su panel)
   fetch(u+'/api/planes?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){if(!d||!d.ok)return;var p=d.planes,m=d.moneda||'€',f=function(n){return (Number(n)||0).toFixed(2).replace('.',',')+' '+m};var ns=document.querySelectorAll('.precio .n');if(ns.length>=2&&p.mes&&p.lifetime){ns[0].textContent=f(p.mes.precio);ns[1].textContent=f(p.lifetime.precio)}}).catch(function(){});
   var ir=new URLSearchParams(location.search).get('ir');if(ir==='radio')location.replace(u+'/radio');if(ir==='cliente')location.replace(L['l-cli']);if(ir==='gdp')location.replace(L['l-gdp']);if(ir==='staff')location.replace(L['l-staff']);if(ir==='panel'||ir==='admin')location.replace(u+'/')}
-function apagado(){estado('off','El servidor de Perez está apagado ahora mismo')}
-function probar(u){u=(u||'').trim();if(!u||u.indexOf('127.0.0.1')>=0){apagado();return}var ctl=new AbortController();var t=setTimeout(function(){ctl.abort()},7000);
-  fetch(u+'/ping?t='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ctl.signal}).then(function(){clearTimeout(t);activar(u)}).catch(function(){clearTimeout(t);apagado()})}
-fetch(API+'?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}}).then(function(r){return r.json()}).then(function(j){probar(atob((j.content||'').replace(/\n/g,'')))})
- .catch(function(){fetch('servidor.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(probar).catch(apagado)});
+function apagado(){estado('off','Los servidores están apagados ahora mismo. Prueba en un rato.')}
+servidorVivo().then(function(s){if(s)activar(s.u,s.reserva);else apagado()});
 setTimeout(function(){if(SON.on)sArranque()},400);
 
 /* ---------------- la lata (extras) ---------------- */
