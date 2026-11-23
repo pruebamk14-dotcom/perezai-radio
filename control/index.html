@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex"><meta name="theme-color" content="#07070a">
+<title>PerezAI · Control móvil</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;background:#07070a radial-gradient(ellipse at 50% 15%,rgba(252,175,23,.2),transparent 60%);color:#f4f1ea;font-family:"Segoe UI",system-ui,Arial,sans-serif;text-align:center}
+.c{max-width:420px;width:100%}
+h1{font:900 42px/1 Impact,"Arial Narrow Bold",sans-serif;letter-spacing:2px;margin:0;background:linear-gradient(180deg,#fff,#fcaf17);-webkit-background-clip:text;background-clip:text;color:transparent}
+small{display:block;letter-spacing:.5em;font-size:12px;margin-top:6px;color:#fff}
+p{color:#b9b3a6;font-size:16px;line-height:1.5;margin:18px 0 0}
+.r{width:44px;height:44px;margin:24px auto 0;border:4px solid rgba(252,175,23,.25);border-top-color:#fcaf17;border-radius:50%;animation:g .8s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}a{color:#fcaf17}
+</style></head>
+<body><div class="c"><h1>PEREZAI</h1><small>CONTROL MÓVIL</small><p id="t">Buscando el PC de reserva…</p><div class="r" id="r"></div></div>
+<script>
+// Dirección FIJA del control móvil de los admins: lleva al programa de Cristian (puerto 8443 de su dirección de Tailscale).
+(function(){
+  var t=document.getElementById('t');
+  fetch('https://api.github.com/repos/pruebamk14-dotcom/perezai-radio/contents/servidor_respaldo.txt?t='+Date.now(),{headers:{Accept:'application/vnd.github+json'}})
+   .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return atob((j.content||'').replace(/\n/g,''))})
+   .catch(function(){return fetch('../servidor_respaldo.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():''})})
+   .then(function(u){u=(u||'').trim().replace(/\/+$/,'');
+     if(!/^https:\/\/[a-z0-9.-]+$/i.test(u)){document.getElementById('r').style.display='none';t.textContent='Ahora mismo no hay ningún PC de reserva autorizado.';return}
+     location.replace(u+':8443/')})
+   .catch(function(){document.getElementById('r').style.display='none';t.innerHTML='No pude conectar. <a href="">Reintentar</a>'});
+})();
+</script></body></html>
